@@ -1,20 +1,22 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
-setup(name='cooperhewitt-roboteyes-opencv',
-      version='0.1',
-      description='',
-      author='Cooper Hewitt Smithsonian Design Museum',
-      url='https://github.com/cooperhewitt/py-cooperhewitt-roboteyes-opencv',
-      requires=[
-        # please write me
+packages = find_packages()
+desc = open("README.md").read(),
+
+setup(
+    name='cooperhewitt.roboteyes.opencv',
+    namespace_packages=['cooperhewitt', 'cooperhewitt.roboteyes'],
+    version='0.2',
+    description='',
+    author='Cooper Hewitt Smithsonian Design Museum',
+    url='https://github.com/cooperhewitt/py-cooperhewitt-roboteyes-opencv',
+    requires=[
+        'cv2',
+        'numpy',
         ],
-      packages=[
-        'cooperhewitt',
-        'cooperhewitt.roboteyes',
-        'cooperhewitt.roboteyes.opencv',
-        ]
-      scripts=[],
-      download_url='https://github.com/cooperhewitt/py-cooperhewitt-roboteyes-opencv/releases/tag/v0.1',
-      license='BSD')
+    packages=packages,
+    scripts=[],
+    download_url='https://github.com/cooperhewitt/py-cooperhewitt-roboteyes-opencv/tarball/master',
+    license='BSD')
