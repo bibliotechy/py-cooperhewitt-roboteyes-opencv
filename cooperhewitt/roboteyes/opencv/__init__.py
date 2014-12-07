@@ -35,10 +35,36 @@ def detect(im, rules):
         rects[:,2:] += rects[:,:2]
         return rects
 
-def draw_rectangles(rects, color=(0, 255, 0)):
+def has_faces(im, rules):
+
+        rsp = detect(im, rules)
+
+        if rsp is None:
+                return False
+
+        return True
+
+def draw_rectangles(im, rects, color=(0, 255, 0)):
 
         for x1, y1, x2, y2 in rects:
                 cv2.rectangle(im, (x1, y1), (x2, y2), color, 2)
                 
 def save(im, path):
-        cv2.imwrite(im, path)
+        cv2.imwrite(path, im)
+
+if __name__ == '__main__':
+
+        import sys
+
+        path = sys.argv[1]
+        rules = sys.argv[2]
+
+        im = load_from_path(path)
+        faces = detect_faces(im, rules)
+
+        if faces is None:
+                print "no faces"
+                sys.exit()
+
+        draw_rectangles(im, faces)
+        save(im, "test.png")
